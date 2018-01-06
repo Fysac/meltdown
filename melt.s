@@ -19,9 +19,9 @@ flush_cache:
 
 try_read:
     xor rax, rax
-    mov al, byte [rdi]
-
-    shl rax, 0xc
-    jz try_read
-    mov rbx, qword [probe_array + rax]
+    mov rax, [rdi]
+    and rax, rsi
+    shl rax, 8
+    mov rbx, [probe_array + rax]
+    add rbx, rax
     ret
